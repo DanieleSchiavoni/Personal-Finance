@@ -7,8 +7,10 @@ public class enumerazioni {
 	// TipoSpazio.java
 	public enum TipoSpazio { PERSONALE, AZIENDALE }
 
-	// RuoloSpazio.java  (ruolo dentro uno spazio di lavoro)
-	public enum RuoloSpazio { PROPRIETARIO, AMMINISTRATORE, MEMBRO, LETTORE }
+	public enum StatoBudget { OK, ATTENZIONE, SUPERATO }
+	
+	/** Ampiezza dei periodi nei grafici di andamento */
+	public enum Granularita { SETTIMANA, MESE }
 
 	// TipoTransazione.java  (usato anche dalle categorie)
 	public enum TipoTransazione { ENTRATA, USCITA }

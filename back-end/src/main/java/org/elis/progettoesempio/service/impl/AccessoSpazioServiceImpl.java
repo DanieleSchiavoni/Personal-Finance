@@ -5,7 +5,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import org.elis.progettoesempio.entity.MembroSpazio;
-import org.elis.progettoesempio.entity.enumerazioni.RuoloSpazio;
+import org.elis.progettoesempio.entity.RuoloSpazio;
 import org.elis.progettoesempio.exception.AccessoNegatoException;
 import org.elis.progettoesempio.exception.RisorsaNonTrovataException;
 import org.elis.progettoesempio.repository.MembroSpazioRepository;

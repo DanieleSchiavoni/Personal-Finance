@@ -26,6 +26,9 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             Long spazioLavoroId, Long categoriaId, int mese, int anno);
 
     boolean existsByCategoriaId(Long categoriaId);
+    
+    Optional<Budget> findBySpazioLavoroIdAndCategoriaIdAndMeseAndAnno(
+            Long spazioLavoroId, Long categoriaId, int mese, int anno);
 
     @Modifying(clearAutomatically = true)
     @Query("delete from Budget b where b.spazioLavoro.id = :spazioLavoroId")

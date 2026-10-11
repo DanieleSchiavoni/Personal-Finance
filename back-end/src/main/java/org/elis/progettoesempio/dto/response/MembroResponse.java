@@ -3,7 +3,9 @@ package org.elis.progettoesempio.dto.response;
 
 import java.time.LocalDateTime;
 
-import org.elis.progettoesempio.entity.enumerazioni.RuoloSpazio;
+import org.elis.progettoesempio.entity.RuoloSpazio;
+
+
 
 public record MembroResponse(
         Long utenteId,

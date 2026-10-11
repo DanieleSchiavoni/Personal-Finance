@@ -5,9 +5,10 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.elis.progettoesempio.entity.MembroSpazio;
+import org.elis.progettoesempio.entity.RuoloSpazio;
 import org.elis.progettoesempio.entity.SpazioLavoro;
 import org.elis.progettoesempio.entity.Utente;
-import org.elis.progettoesempio.entity.enumerazioni.RuoloSpazio;
+
 import org.elis.progettoesempio.entity.enumerazioni.TipoSpazio;
 import org.elis.progettoesempio.exception.AccessoNegatoException;
 import org.elis.progettoesempio.exception.RisorsaNonTrovataException;

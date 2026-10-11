@@ -22,10 +22,16 @@ public interface TransazioneRepository
     List<Transazione> findTop5BySpazioLavoroIdOrderByDataTransazioneDescIdDesc(Long spazioLavoroId);
 
     long countBySpazioLavoroId(Long spazioLavoroId);
+    
+    long countBySpazioLavoroIdAndDataTransazioneBetween(Long spazioLavoroId, LocalDate dal, LocalDate al);
 
     boolean existsByCategoriaId(Long categoriaId);
 
     boolean existsByDipendenteIdAndAnnoStipendioAndMeseStipendio(Long dipendenteId, Integer anno, Integer mese);
+    
+    boolean existsByDipendenteId(Long dipendenteId);
+
+    List<Transazione> findByDipendenteIdOrderByAnnoStipendioDescMeseStipendioDesc(Long dipendenteId);
 
     /** Somma totale per tipo (serve al saldo complessivo) */
     @Query("""

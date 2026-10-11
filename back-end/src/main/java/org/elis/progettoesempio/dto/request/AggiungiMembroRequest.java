@@ -1,7 +1,9 @@
 // AggiungiMembroRequest.java
 package org.elis.progettoesempio.dto.request;
 
-import org.elis.progettoesempio.entity.enumerazioni.RuoloSpazio;
+
+
+import org.elis.progettoesempio.entity.RuoloSpazio;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,9 +1,10 @@
-// MembroSpazio.java
 package org.elis.progettoesempio.entity;
 
 import java.time.LocalDateTime;
-import org.elis.progettoesempio.entity.enumerazioni.RuoloSpazio;
+
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.type.SqlTypes;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,10 +22,12 @@ public class MembroSpazio {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "spazio_lavoro_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private SpazioLavoro spazioLavoro;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "utente_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Utente utente;
 
     @Enumerated(EnumType.STRING)

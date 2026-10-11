@@ -4,7 +4,7 @@ package org.elis.progettoesempio.repository;
 import java.util.List;
 import java.util.Optional;
 import org.elis.progettoesempio.entity.MembroSpazio;
-import org.elis.progettoesempio.entity.enumerazioni.RuoloSpazio;
+import org.elis.progettoesempio.entity.RuoloSpazio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

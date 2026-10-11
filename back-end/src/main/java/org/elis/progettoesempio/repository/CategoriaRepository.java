@@ -40,4 +40,11 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
     boolean existsBySpazioLavoroIdAndNomeIgnoreCaseAndTipo(Long spazioLavoroId, String nome, TipoTransazione tipo);
 
     boolean existsBySpazioLavoroIsNullAndNomeIgnoreCaseAndTipo(String nome, TipoTransazione tipo);
+    
+    /** Categorie globali, gestite dagli admin */
+    List<Categoria> findBySpazioLavoroIsNullOrderByTipoAscNomeAsc();
+
+    Optional<Categoria> findByIdAndSpazioLavoroIsNull(Long id);
+
+    long countBySpazioLavoroIsNull();
 }
