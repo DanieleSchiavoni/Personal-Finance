@@ -1,6 +1,10 @@
 package org.elis.progettoesempio.entity;
 
 import java.time.LocalDateTime;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,5 +25,6 @@ public class RefreshToken {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "utente_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Utente utente;
 }
