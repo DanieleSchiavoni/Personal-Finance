@@ -16,3 +16,7 @@ export interface CreaSpazioLavoroRequest {
   nome: string;
   valuta?: string;
 }
+export interface AggiornaSpazioLavoroRequest {
+  nome: string;
+  valuta: string;
+}

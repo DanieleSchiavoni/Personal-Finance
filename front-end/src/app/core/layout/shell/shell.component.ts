@@ -171,6 +171,7 @@ export class ShellComponent implements OnInit, OnDestroy {
     if (aziendale) {
       voci.push({ percorso: '/team', etichetta: 'Team', icona: 'bi-diagram-3' });
     }
+    voci.push({ percorso: '/notizie', etichetta: 'Notizie', icona: 'bi-newspaper' });
     voci.push({ percorso: '/notifiche', etichetta: 'Notifiche', icona: 'bi-bell' });
     voci.push({ percorso: '/profilo', etichetta: 'Profilo', icona: 'bi-person-circle' });
     if (this.auth.isAdmin()) {

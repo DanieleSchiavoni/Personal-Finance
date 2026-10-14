@@ -4,7 +4,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { CreaSpazioLavoroRequest, SpazioLavoro } from '../../models/spazio-lavoro.model';
+import { AggiornaSpazioLavoroRequest, CreaSpazioLavoroRequest, SpazioLavoro } from '../../models/spazio-lavoro.model';
 
 /** Gli spazi dell'utente e quello attualmente selezionato: tutte le pagine lavorano sullo spazio attivo */
 @Injectable({ providedIn: 'root' })
@@ -55,6 +55,27 @@ export class SpazioLavoroService {
       tap((creato) => {
         this.elenco.update((spazi) => [...spazi, creato]);
         this.seleziona(creato.id);
+      }),
+    );
+  }
+
+  aggiorna(id: number, richiesta: AggiornaSpazioLavoroRequest): Observable<SpazioLavoro> {
+    return this.http.put<SpazioLavoro>(`${this.url}/${id}`, richiesta).pipe(
+      tap((aggiornato) =>
+        this.elenco.update((spazi) => spazi.map((spazio) => (spazio.id === aggiornato.id ? aggiornato : spazio))),
+      ),
+    );
+  }
+
+  /** Dopo l'eliminazione si passa al primo spazio rimasto (quello personale) */
+  elimina(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`).pipe(
+      tap(() => {
+        this.elenco.update((spazi) => spazi.filter((spazio) => spazio.id !== id));
+        const primo = this.elenco()[0];
+        if (primo) {
+          this.seleziona(primo.id);
+        }
       }),
     );
   }

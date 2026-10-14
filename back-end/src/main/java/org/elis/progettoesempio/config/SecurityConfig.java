@@ -45,6 +45,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(richieste -> richieste
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/notizie").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .exceptionHandling(eccezioni -> eccezioni
