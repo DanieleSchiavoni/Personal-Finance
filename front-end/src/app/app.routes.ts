@@ -39,7 +39,10 @@ export const routes: Routes = [
     canActivate: [autenticatoGuard],
     loadComponent: () => import('./core/layout/shell/shell.component').then((m) => m.ShellComponent),
     children: [
-      { path: 'dashboard', loadComponent: caricaSegnaposto, data: { titolo: 'Dashboard' } },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+      },
       { path: 'transazioni', loadComponent: caricaElencoTransazioni },
       { path: 'transazioni/nuova', loadComponent: caricaModuloTransazione },
       { path: 'transazioni/:id/modifica', loadComponent: caricaModuloTransazione },
