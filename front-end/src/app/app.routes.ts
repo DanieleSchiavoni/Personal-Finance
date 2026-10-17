@@ -46,13 +46,22 @@ export const routes: Routes = [
       { path: 'transazioni', loadComponent: caricaElencoTransazioni },
       { path: 'transazioni/nuova', loadComponent: caricaModuloTransazione },
       { path: 'transazioni/:id/modifica', loadComponent: caricaModuloTransazione },
-      { path: 'budget', loadComponent: caricaSegnaposto, data: { titolo: 'Budget' } },
-      { path: 'obiettivi', loadComponent: caricaSegnaposto, data: { titolo: 'Obiettivi di risparmio' } },
+      {
+        path: 'budget',
+        loadComponent: () => import('./features/budget/budget.component').then((m) => m.BudgetComponent),
+      },
+      {
+        path: 'obiettivi',
+        loadComponent: () => import('./features/obiettivi/obiettivi.component').then((m) => m.ObiettiviComponent),
+      },
       {
         path: 'categorie',
         loadComponent: () => import('./features/categorie/categorie.component').then((m) => m.CategorieComponent),
       },
-      { path: 'dipendenti', loadComponent: caricaSegnaposto, data: { titolo: 'Dipendenti' } },
+      {
+        path: 'dipendenti',
+        loadComponent: () => import('./features/dipendenti/dipendenti.component').then((m) => m.DipendentiComponent),
+      },
       {
         path: 'team',
         loadComponent: () => import('./features/team/team.component').then((m) => m.TeamComponent),

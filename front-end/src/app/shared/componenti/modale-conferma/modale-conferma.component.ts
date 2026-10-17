@@ -1,9 +1,8 @@
-// src/app/shared/componenti/modale-conferma/modale-conferma.component.ts
 import { Component, input, output } from '@angular/core';
 
 /**
  * Finestra di conferma. Si mostra con @if nel componente che la usa.
- * Il contenuto scritto dentro il tag (ad esempio un campo password) compare sotto il messaggio.
+ * Il contenuto scritto dentro il tag (ad esempio un campo di testo) compare sotto il messaggio.
  */
 @Component({
   selector: 'app-modale-conferma',
@@ -24,7 +23,9 @@ import { Component, input, output } from '@angular/core';
             <button type="button" class="btn btn-light" (click)="annullato.emit()">Annulla</button>
             <button
               type="button"
-              class="btn btn-danger"
+              class="btn"
+              [class.btn-danger]="stile() === 'danger'"
+              [class.btn-primary]="stile() === 'primary'"
               [disabled]="inCorso() || confermaDisabilitata()"
               (click)="confermato.emit()"
             >
@@ -43,6 +44,8 @@ export class ModaleConfermaComponent {
   readonly titolo = input.required<string>();
   readonly messaggio = input('');
   readonly etichettaConferma = input('Conferma');
+  /** danger per le azioni che eliminano, primary per le altre */
+  readonly stile = input<'danger' | 'primary'>('danger');
   readonly inCorso = input(false);
   readonly confermaDisabilitata = input(false);
 

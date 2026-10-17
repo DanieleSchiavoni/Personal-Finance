@@ -15,3 +15,15 @@ export interface Budget {
   percentuale: number;
   stato: StatoBudget;
 }
+
+export interface BudgetRequest {
+  categoriaId: number;
+  importo: number;
+  mese: number;
+  anno: number;
+}
+
+/** Di un budget esistente si modifica solo l'importo */
+export interface AggiornaBudgetRequest {
+  importo: number;
+}
