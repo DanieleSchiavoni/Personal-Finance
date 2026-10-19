@@ -12,6 +12,7 @@ import { messaggioErrore } from '../../shared/utilita/errori';
 import { GraficiAndamentoComponent } from './grafici/grafici-andamento.component';
 import { GraficoBudgetComponent } from './grafici/grafico-budget.component';
 import { GraficoSpeseCategoriaComponent } from './grafici/grafico-spese-categoria.component';
+import { PulsanteResocontoComponent } from './pulsante-resoconto.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +25,7 @@ import { GraficoSpeseCategoriaComponent } from './grafici/grafico-spese-categori
     GraficiAndamentoComponent,
     GraficoSpeseCategoriaComponent,
     GraficoBudgetComponent,
+    PulsanteResocontoComponent,
   ],
   template: `
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
@@ -50,6 +52,9 @@ import { GraficoSpeseCategoriaComponent } from './grafici/grafico-spese-categori
         </div>
         @if (!eMeseCorrente()) {
           <button type="button" class="btn btn-link btn-sm" (click)="vaiAlMeseCorrente()">Torna a oggi</button>
+        }
+        @if (spaziLavoro.puoGestire()) {
+          <app-pulsante-resoconto [mese]="mese()" [anno]="anno()" />
         }
         @if (spaziLavoro.puoScrivere()) {
           <a class="btn btn-primary btn-sm" routerLink="/transazioni/nuova">
