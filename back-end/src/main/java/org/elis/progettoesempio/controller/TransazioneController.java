@@ -7,6 +7,7 @@ import org.elis.progettoesempio.dto.response.PaginaResponse;
 import org.elis.progettoesempio.dto.response.TransazioneResponse;
 import org.elis.progettoesempio.security.UtenteCorrente;
 import org.elis.progettoesempio.service.TransazioneService;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class TransazioneController {
     /** Filtri, paginazione e ordinamento arrivano come parametri: ?tipo=USCITA&dal=2026-10-01&pagina=0 */
     @GetMapping
     public PaginaResponse<TransazioneResponse> cerca(@PathVariable Long spazioId, @UtenteCorrente Long utenteId,
-            @Valid @ModelAttribute RicercaTransazioniRequest ricerca) {
+            @Valid @ModelAttribute @ParameterObject RicercaTransazioniRequest ricerca) {
         return transazioneService.cerca(spazioId, utenteId, ricerca);
     }
 

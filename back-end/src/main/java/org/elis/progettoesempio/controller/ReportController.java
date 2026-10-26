@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -26,6 +29,8 @@ public class ReportController {
 
     /** Scarica il PDF del mese. Se mese e anno mancano si usa il mese corrente. */
     @GetMapping("/mensile")
+    @ApiResponse(responseCode = "200", description = "Il PDF del resoconto del mese",
+    content = @Content(mediaType = "application/pdf", schema = @Schema(type = "string", format = "binary")))
     public ResponseEntity<byte[]> resocontoMensile(@PathVariable Long spazioId, @UtenteCorrente Long utenteId,
             @RequestParam(required = false) Integer mese, @RequestParam(required = false) Integer anno) {
         YearMonth oggi = YearMonth.now();

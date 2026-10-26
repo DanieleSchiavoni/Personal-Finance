@@ -12,6 +12,7 @@ import org.elis.progettoesempio.dto.response.StatisticheGeneraliResponse;
 import org.elis.progettoesempio.dto.response.UtenteResponse;
 import org.elis.progettoesempio.security.UtenteCorrente;
 import org.elis.progettoesempio.service.AdminService;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class AdminController {
 
     @GetMapping("/utenti")
     public PaginaResponse<UtenteResponse> elencaUtenti(@UtenteCorrente Long adminId,
-            @Valid @ModelAttribute RicercaUtentiRequest ricerca) {
+            @Valid @ModelAttribute @ParameterObject RicercaUtentiRequest ricerca) {
         return adminService.elencaUtenti(adminId, ricerca);
     }
 
