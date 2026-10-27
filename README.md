@@ -4,19 +4,6 @@ Piattaforma web per gestire le **finanze personali e aziendali**: transazioni, b
 
 Progetto realizzato come portfolio: backend **Spring Boot**, frontend **Angular**, database **MySQL**, con attenzione a sicurezza, test e a una struttura facile da leggere e da estendere.
 
-## Anteprima
-
-| | |
-|---|---|
-| ![Home con le notizie](docs/screenshots/home.png) | ![Dashboard](docs/screenshots/dashboard.png) |
-| Home pubblica con le notizie di economia internazionale | Dashboard con schede di riepilogo e grafici |
-| ![Transazioni](docs/screenshots/transazioni.png) | ![Budget](docs/screenshots/budget.png) |
-| Transazioni con filtri, ordinamento e paginazione | Budget mensili con stato e soglie |
-| ![Dipendenti](docs/screenshots/dipendenti.png) | ![Swagger](docs/screenshots/swagger.png) |
-| Dipendenti e stipendi di uno spazio aziendale | Documentazione interattiva delle API |
-
-<p align="center"><img src="docs/screenshots/mobile.png" alt="Versione per smartphone" width="260"></p>
-
 ## Funzionalità
 
 **Per tutti gli utenti**
