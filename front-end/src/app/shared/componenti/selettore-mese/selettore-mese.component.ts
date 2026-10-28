@@ -16,7 +16,7 @@ import { Component, computed, input, model } from '@angular/core';
                 (click)="precedente()">
           <i class="bi bi-chevron-left"></i>
         </button>
-        <span class="btn btn-light btn-sm text-capitalize disabled fw-semibold" style="min-width: 8.5rem">
+        <span class="btn btn-light btn-sm text-capitalize disabled fw-semibold selettore-mese-etichetta">
           {{ data() | date: 'LLLL y' }}
         </span>
         <button type="button" class="btn btn-outline-secondary btn-sm" aria-label="Mese successivo"

@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Personal Finance - tema scuro
+   Si attiva con l'attributo data-bs-theme="dark" sull'elemento <html> (lo imposta TemaService).
+   Qui si ridefiniscono SOLO i colori: le regole degli elementi stanno in styles.css e usano le
+   stesse variabili. Bootstrap 5.3 adatta da solo la maggior parte dei componenti (card, moduli,
+   finestre, tabelle, avvisi); in fondo ci sono le poche classi chiare che vanno corrette.
+   ========================================================================== */
+
+[data-bs-theme="dark"] {
+  color-scheme: dark;
+
+  --pf-primario: #6ea8fe;
+  --pf-primario-chiaro: #1c2f52;
+  --pf-sfondo: #11151b;
+  --pf-superficie: #1a1f27;
+  --pf-superficie-2: #232a34;
+  --pf-bordo: #313a47;
+  --pf-testo: #e6e9ee;
+  --pf-testo-secondario: #c3c9d3;
+  --pf-neutro: #8b95a5;
+
+  --pf-entrate: #198754;
+  --pf-uscite: #dc3545;
+  --pf-attenzione: #ffc107;
+  --pf-saldo: #6ea8fe;
+  --pf-saldo-sfondo: rgba(110, 168, 254, 0.18);
+
+  --pf-velo: rgba(0, 0, 0, 0.65);
+  --pf-presentazione-da: #172640;
+  --pf-presentazione-a: #11151b;
+
+  /* Bootstrap usa i colori del sito */
+  --bs-body-bg: var(--pf-superficie);
+  --bs-body-color: var(--pf-testo);
+  --bs-border-color: var(--pf-bordo);
+  --bs-tertiary-bg: var(--pf-superficie-2);
+}
+
+/* Classi "chiare" di Bootstrap che non cambiano da sole con il tema */
+[data-bs-theme="dark"] .bg-white {
+  background-color: var(--pf-superficie) !important;
+}
+
+[data-bs-theme="dark"] .text-dark {
+  color: var(--pf-testo) !important;
+}
+
+[data-bs-theme="dark"] .text-bg-light {
+  background-color: var(--pf-superficie-2) !important;
+  color: var(--pf-testo-secondario) !important;
+}
+
+[data-bs-theme="dark"] .btn-light {
+  --bs-btn-color: var(--pf-testo);
+  --bs-btn-bg: var(--pf-superficie-2);
+  --bs-btn-border-color: var(--pf-bordo);
+  --bs-btn-hover-color: var(--pf-testo);
+  --bs-btn-hover-bg: var(--pf-bordo);
+  --bs-btn-hover-border-color: var(--pf-bordo);
+  --bs-btn-active-color: var(--pf-testo);
+  --bs-btn-active-bg: var(--pf-bordo);
+  --bs-btn-active-border-color: var(--pf-bordo);
+  --bs-btn-disabled-color: var(--pf-neutro);
+  --bs-btn-disabled-bg: var(--pf-superficie-2);
+  --bs-btn-disabled-border-color: var(--pf-bordo);
+}
+
+[data-bs-theme="dark"] .table-light {
+  --bs-table-color: var(--pf-testo);
+  --bs-table-bg: var(--pf-superficie-2);
+  --bs-table-border-color: var(--pf-bordo);
+  --bs-table-striped-bg: var(--pf-superficie-2);
+  --bs-table-hover-bg: var(--pf-bordo);
+}

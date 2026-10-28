@@ -8,7 +8,8 @@ import { Subscription } from 'rxjs';
 import { BudgetService } from '../../../core/services/budget.service';
 import { SpazioLavoroService } from '../../../core/services/spazio-lavoro.service';
 import { Budget, StatoBudget } from '../../../models/budget.model';
-import { COLORI_GRAFICI } from '../../../shared/utilita/colori-grafici';
+import { COLORI_GRAFICI, opzioniTema } from '../../../shared/utilita/colori-grafici';
+import { TemaService } from '../../../core/services/tema.service';
 import { messaggioErrore } from '../../../shared/utilita/errori';
 import { formattaValuta } from '../../../shared/utilita/valuta';
 
@@ -31,7 +32,7 @@ import { formattaValuta } from '../../../shared/utilita/valuta';
         } @else if (budget().length === 0) {
           <div class="text-secondary small">Nessun budget impostato per questo mese.</div>
         } @else {
-          <div class="position-relative" [style.height.px]="altezza()" [class.opacity-50]="caricamento()">
+          <div class="position-relative altezza-variabile" [style.--altezza]="altezza() + 'px'" [class.opacity-50]="caricamento()">
             <canvas baseChart type="bar" [data]="dati()" [options]="opzioni()"
                     role="img" aria-label="Grafico a barre della percentuale di utilizzo dei budget"></canvas>
           </div>
@@ -46,6 +47,7 @@ import { formattaValuta } from '../../../shared/utilita/valuta';
 export class GraficoBudgetComponent {
   private readonly budgetService = inject(BudgetService);
   private readonly spaziLavoro = inject(SpazioLavoroService);
+  private readonly tema = inject(TemaService);
 
   readonly mese = input.required<number>();
   readonly anno = input.required<number>();
@@ -74,6 +76,7 @@ export class GraficoBudgetComponent {
   readonly opzioni = computed<ChartConfiguration<'bar'>['options']>(() => {
     const valuta = this.valuta();
     return {
+      ...opzioniTema(this.tema.scuro()),
       indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,

@@ -15,7 +15,7 @@ import { PATTERN_PASSWORD, campiUguali } from '../../shared/utilita/validatori';
   template: `
     <h1 class="h3 mb-3">Profilo</h1>
 
-    <div class="row g-4" style="max-width: 960px">
+    <div class="row g-4 larghezza-max-960">
       <div class="col-12 col-lg-6">
         <div class="card border-0 shadow-sm h-100">
           <div class="card-body p-4">

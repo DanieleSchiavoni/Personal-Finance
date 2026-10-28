@@ -95,9 +95,9 @@ import { messaggioErrore } from '../../shared/utilita/errori';
                   <span class="fw-semibold">{{ obiettivo.importoAttuale | currency: valuta() }}</span>
                   <span class="text-secondary">{{ obiettivo.importoObiettivo | currency: valuta() }}</span>
                 </div>
-                <div class="progress" style="height: 10px">
+                <div class="progress progress-alto">
                   <div class="progress-bar" role="progressbar" [class]="classeBarra(obiettivo.stato)"
-                       [style.width.%]="obiettivo.percentuale"></div>
+                       [style.--percentuale]="obiettivo.percentuale"></div>
                 </div>
                 <div class="d-flex justify-content-between small text-secondary mt-1">
                   <span>{{ obiettivo.percentuale | number: '1.0-1' }}%</span>

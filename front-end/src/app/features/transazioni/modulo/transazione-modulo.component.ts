@@ -34,7 +34,7 @@ type Campo = 'importo' | 'descrizione' | 'data' | 'categoriaId' | 'note';
     @if (!spaziLavoro.puoScrivere()) {
       <div class="alert alert-warning">In questo spazio hai solo la possibilità di consultare i dati.</div>
     } @else {
-      <div class="card border-0 shadow-sm" style="max-width: 640px">
+      <div class="card border-0 shadow-sm larghezza-max-640">
         <div class="card-body p-4">
           @if (errore()) {
             <div class="alert alert-danger py-2" role="alert">{{ errore() }}</div>

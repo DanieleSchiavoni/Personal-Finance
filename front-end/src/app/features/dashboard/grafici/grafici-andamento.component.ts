@@ -7,7 +7,8 @@ import { Subscription } from 'rxjs';
 import { DashboardService } from '../../../core/services/dashboard.service';
 import { SpazioLavoroService } from '../../../core/services/spazio-lavoro.service';
 import { Granularita, PuntoTrend } from '../../../models/dashboard.model';
-import { COLORI_GRAFICI } from '../../../shared/utilita/colori-grafici';
+import { COLORI_GRAFICI, opzioniTema } from '../../../shared/utilita/colori-grafici';
+import { TemaService } from '../../../core/services/tema.service';
 import { dataDaIso, formattaIso } from '../../../shared/utilita/date';
 import { messaggioErrore } from '../../../shared/utilita/errori';
 import { formattaValuta } from '../../../shared/utilita/valuta';
@@ -88,11 +89,11 @@ function titoloMese(iso: string): string {
       </div>
     </div>
   `,
-  styles: [`.contenitore-grafico { position: relative; height: 280px; }`],
 })
 export class GraficiAndamentoComponent {
   private readonly dashboardService = inject(DashboardService);
   private readonly spaziLavoro = inject(SpazioLavoroService);
+  private readonly tema = inject(TemaService);
 
   readonly granularita = signal<Granularita>('MESE');
   readonly periodi = signal(12);
@@ -158,6 +159,7 @@ export class GraficiAndamentoComponent {
   readonly opzioniBarre = computed<ChartConfiguration<'bar'>['options']>(() => {
     const valuta = this.valuta();
     return {
+      ...opzioniTema(this.tema.scuro()),
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
@@ -178,6 +180,7 @@ export class GraficiAndamentoComponent {
   readonly opzioniLinea = computed<ChartConfiguration<'line'>['options']>(() => {
     const valuta = this.valuta();
     return {
+      ...opzioniTema(this.tema.scuro()),
       responsive: true,
       maintainAspectRatio: false,
       plugins: {

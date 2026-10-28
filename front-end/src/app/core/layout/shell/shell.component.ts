@@ -6,6 +6,7 @@ import { messaggioErrore } from '../../../shared/utilita/errori';
 import { AutenticazioneService } from '../../services/autenticazione.service';
 import { SpazioLavoroService } from '../../services/spazio-lavoro.service';
 import { BadgeNotificheComponent } from '../../../shared/componenti/badge-notifiche/badge-notifiche.component';
+import { PulsanteTemaComponent } from '../../../shared/componenti/pulsante-tema/pulsante-tema.component';
 
 interface VoceMenu {
   percorso: string;
@@ -15,7 +16,7 @@ interface VoceMenu {
 
 @Component({
   selector: 'app-shell',
-  imports: [ReactiveFormsModule, RouterLink, RouterLinkActive, RouterOutlet, BadgeNotificheComponent],
+  imports: [PulsanteTemaComponent, ReactiveFormsModule, RouterLink, RouterLinkActive, RouterOutlet, BadgeNotificheComponent],
   template: `
     <div class="contenitore">
       <!-- Barra superiore, solo su smartphone e tablet -->
@@ -24,6 +25,7 @@ interface VoceMenu {
           <i class="bi bi-list fs-2"></i>
         </button>
         <span class="fw-semibold">Personal Finance</span>
+        <app-pulsante-tema class="ms-auto" />
       </header>
 
       @if (menuAperto()) {
@@ -92,6 +94,7 @@ interface VoceMenu {
         <div class="piede px-3 py-3">
           <div class="small fw-semibold text-truncate">{{ auth.utente()?.nome }} {{ auth.utente()?.cognome }}</div>
           <div class="small text-secondary text-truncate mb-2">{{ auth.utente()?.email }}</div>
+          <app-pulsante-tema class="d-block mb-2" [conEtichetta]="true" />
           <button type="button" class="btn btn-outline-secondary btn-sm w-100" (click)="auth.esci()">
             <i class="bi bi-box-arrow-right me-1"></i>Esci
           </button>
@@ -106,39 +109,6 @@ interface VoceMenu {
       </main>
     </div>
   `,
-  styles: [
-    `
-      .contenitore { display: flex; min-height: 100vh; }
-      .barra-laterale {
-        width: 260px; flex: 0 0 260px; background: #fff; border-right: 1px solid #e5e7eb;
-        display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto;
-      }
-      .marchio { font-weight: 700; font-size: 1.1rem; color: #0d6efd; }
-      .voce {
-        display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; margin-bottom: 0.15rem;
-        border-radius: 0.5rem; color: #374151; text-decoration: none; font-size: 0.95rem;
-      }
-      .voce:hover { background: #f3f4f6; }
-      .voce.attiva { background: #e7f0ff; color: #0d6efd; font-weight: 600; }
-      .piede { border-top: 1px solid #e5e7eb; }
-      .contenuto { flex: 1 1 auto; min-width: 0; padding: 1.5rem; }
-      .barra-mobile {
-        position: fixed; top: 0; left: 0; right: 0; height: 56px; background: #fff;
-        border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; gap: 0.75rem;
-        padding: 0 1rem; z-index: 1030;
-      }
-      .sfondo-menu { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); z-index: 1040; }
-
-      @media (max-width: 991.98px) {
-        .barra-laterale {
-          position: fixed; top: 0; left: 0; z-index: 1050; transform: translateX(-100%);
-          transition: transform 0.2s ease-in-out;
-        }
-        .barra-laterale.aperta { transform: translateX(0); }
-        .contenuto { padding: 4.5rem 1rem 1.5rem; }
-      }
-    `,
-  ],
 })
 export class ShellComponent implements OnInit, OnDestroy {
   readonly auth = inject(AutenticazioneService);

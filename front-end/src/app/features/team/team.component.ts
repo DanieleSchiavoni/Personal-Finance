@@ -53,7 +53,7 @@ import { messaggioErrore } from '../../shared/utilita/errori';
                     <td>{{ membro.email }}</td>
                     <td>
                       @if (puoCambiareRuolo(membro)) {
-                        <select class="form-select form-select-sm" style="width: auto"
+                        <select class="form-select form-select-sm w-auto"
                                 (change)="cambiaRuolo(membro, $event)">
                           @for (ruolo of ruoliAssegnabili(); track ruolo) {
                             <option [value]="ruolo" [selected]="ruolo === membro.ruolo">{{ etichette[ruolo] }}</option>

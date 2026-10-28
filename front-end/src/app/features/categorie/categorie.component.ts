@@ -72,9 +72,8 @@ const VALORI_INIZIALI = { nome: '', tipo: 'USCITA' as TipoTransazione, colore: '
         <ul class="list-group list-group-flush">
           @for (categoria of proprie(); track categoria.id) {
             <li class="list-group-item d-flex align-items-center gap-3">
-              <span class="d-inline-block rounded-circle flex-shrink-0"
-                    style="width: 0.85rem; height: 0.85rem"
-                    [style.background-color]="categoria.colore ?? '#6c757d'"></span>
+              <span class="d-inline-block rounded-circle flex-shrink-0 pallino pallino-medio"
+                    [style.--colore]="categoria.colore"></span>
               <div class="flex-grow-1">
                 <div class="fw-semibold">{{ categoria.nome }}</div>
                 @if (categoria.descrizione) {
@@ -102,9 +101,8 @@ const VALORI_INIZIALI = { nome: '', tipo: 'USCITA' as TipoTransazione, colore: '
       <ul class="list-group list-group-flush">
         @for (categoria of predefinite(); track categoria.id) {
           <li class="list-group-item d-flex align-items-center gap-3">
-            <span class="d-inline-block rounded-circle flex-shrink-0"
-                  style="width: 0.85rem; height: 0.85rem"
-                  [style.background-color]="categoria.colore ?? '#6c757d'"></span>
+            <span class="d-inline-block rounded-circle flex-shrink-0 pallino pallino-medio"
+                  [style.--colore]="categoria.colore"></span>
             <div class="flex-grow-1">{{ categoria.nome }}</div>
             <span class="badge" [class.text-bg-success]="categoria.tipo === 'ENTRATA'"
                   [class.text-bg-danger]="categoria.tipo === 'USCITA'">

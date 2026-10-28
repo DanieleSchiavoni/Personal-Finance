@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { ElencoNotizieComponent } from '../../shared/componenti/elenco-notizie/elenco-notizie.component';
+import { PulsanteTemaComponent } from '../../shared/componenti/pulsante-tema/pulsante-tema.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ElencoNotizieComponent],
+  imports: [PulsanteTemaComponent, RouterLink, ElencoNotizieComponent],
   template: `
     <header class="bg-white border-bottom sticky-top">
       <div class="container d-flex align-items-center justify-content-between py-2">
@@ -14,6 +15,7 @@ import { ElencoNotizieComponent } from '../../shared/componenti/elenco-notizie/e
           <i class="bi bi-wallet2 me-2"></i>Personal Finance
         </a>
         <div class="d-flex gap-2">
+          <app-pulsante-tema />
           <a routerLink="/login" class="btn btn-outline-primary btn-sm">Accedi</a>
           <a routerLink="/registrazione" class="btn btn-primary btn-sm">Registrati</a>
         </div>
@@ -87,11 +89,5 @@ import { ElencoNotizieComponent } from '../../shared/componenti/elenco-notizie/e
       </div>
     </footer>
   `,
-  styles: [
-    `
-      .marchio { font-weight: 700; font-size: 1.15rem; color: #0d6efd; }
-      .presentazione { background: linear-gradient(135deg, #e7f0ff 0%, #f6f7f9 100%); }
-    `,
-  ],
 })
 export class HomeComponent {}

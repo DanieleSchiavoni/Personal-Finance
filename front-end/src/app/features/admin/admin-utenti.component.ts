@@ -20,7 +20,7 @@ const DIMENSIONE_PAGINA = 10;
       <div class="alert alert-danger">{{ errore() }}</div>
     }
 
-    <div class="input-group input-group-sm mb-3" style="max-width: 420px">
+    <div class="input-group input-group-sm mb-3 larghezza-max-420">
       <input type="search" class="form-control" placeholder="Cerca per nome, username o email"
              [formControl]="testo" (keydown.enter)="cerca()" />
       <button type="button" class="btn btn-primary" (click)="cerca()"><i class="bi bi-search"></i></button>

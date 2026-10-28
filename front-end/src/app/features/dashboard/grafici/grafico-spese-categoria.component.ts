@@ -7,7 +7,8 @@ import { Subscription } from 'rxjs';
 import { DashboardService } from '../../../core/services/dashboard.service';
 import { SpazioLavoroService } from '../../../core/services/spazio-lavoro.service';
 import { TotaleCategoria } from '../../../models/dashboard.model';
-import { COLORI_GRAFICI } from '../../../shared/utilita/colori-grafici';
+import { COLORI_GRAFICI, coloreSuperficie, opzioniTema } from '../../../shared/utilita/colori-grafici';
+import { TemaService } from '../../../core/services/tema.service';
 import { formattaIso } from '../../../shared/utilita/date';
 import { messaggioErrore } from '../../../shared/utilita/errori';
 import { formattaValuta } from '../../../shared/utilita/valuta';
@@ -28,7 +29,7 @@ import { formattaValuta } from '../../../shared/utilita/valuta';
         } @else if (voci().length === 0) {
           <div class="text-secondary small">Nessuna spesa in questo mese.</div>
         } @else {
-          <div class="contenitore-grafico" [class.opacity-50]="caricamento()">
+          <div class="contenitore-grafico contenitore-grafico-alto" [class.opacity-50]="caricamento()">
             <canvas baseChart type="doughnut" [data]="dati()" [options]="opzioni()"
                     role="img" aria-label="Grafico a ciambella delle spese per categoria"></canvas>
           </div>
@@ -36,11 +37,11 @@ import { formattaValuta } from '../../../shared/utilita/valuta';
       </div>
     </div>
   `,
-  styles: [`.contenitore-grafico { position: relative; height: 300px; }`],
 })
 export class GraficoSpeseCategoriaComponent {
   private readonly dashboardService = inject(DashboardService);
   private readonly spaziLavoro = inject(SpazioLavoroService);
+  private readonly tema = inject(TemaService);
 
   readonly mese = input.required<number>();
   readonly anno = input.required<number>();
@@ -58,6 +59,7 @@ export class GraficoSpeseCategoriaComponent {
         data: this.voci().map((voce) => voce.totale),
         backgroundColor: this.voci().map((voce) => voce.colore ?? COLORI_GRAFICI.neutro),
         borderWidth: 2,
+        borderColor: coloreSuperficie(this.tema.scuro()),
       },
     ],
   }));
@@ -65,6 +67,7 @@ export class GraficoSpeseCategoriaComponent {
   readonly opzioni = computed<ChartConfiguration<'doughnut'>['options']>(() => {
     const valuta = this.valuta();
     return {
+      ...opzioniTema(this.tema.scuro()),
       responsive: true,
       maintainAspectRatio: false,
       cutout: '60%',

@@ -31,7 +31,7 @@ import { messaggioErrore } from '../../shared/utilita/errori';
         </div>
       </div>
     } @else {
-      <div class="d-flex flex-column gap-2" style="max-width: 760px">
+      <div class="d-flex flex-column gap-2 larghezza-max-760">
         @for (notifica of elenco(); track notifica.id) {
           <div class="card border-0 shadow-sm" [class.border-start]="!notifica.letta"
                [class.border-primary]="!notifica.letta" [class.border-4]="!notifica.letta">

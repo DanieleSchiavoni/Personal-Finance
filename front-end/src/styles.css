@@ -1,4 +1,204 @@
+/* ==========================================================================
+   Personal Finance - foglio di stile globale
+   Unico posto in cui si definiscono colori e stili del sito (tema chiaro).
+   Il tema scuro sta in tema-scuro.css e ridefinisce solo le variabili dei colori.
+   Nei componenti Angular non ci sono stili incorporati: si usano le classi di questo file
+   (e quelle di Bootstrap). Solo i valori che arrivano dai dati (il colore di una categoria,
+   la percentuale di una barra) passano come variabili CSS: --colore, --percentuale, --altezza.
+   ========================================================================== */
+
+/* 1. Colori ----------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  --pf-primario: #0d6efd;
+  --pf-primario-chiaro: #e7f0ff;
+  --pf-sfondo: #f6f7f9;
+  --pf-superficie: #ffffff;
+  --pf-superficie-2: #f3f4f6;
+  --pf-bordo: #e5e7eb;
+  --pf-testo: #1f2937;
+  --pf-testo-secondario: #374151;
+  --pf-neutro: #6c757d;
+
+  /* Significato finanziario: gli stessi colori nei grafici e nell'interfaccia */
+  --pf-entrate: #198754;
+  --pf-uscite: #dc3545;
+  --pf-attenzione: #ffc107;
+  --pf-saldo: #0d6efd;
+  --pf-saldo-sfondo: rgba(13, 110, 253, 0.12);
+
+  --pf-velo: rgba(0, 0, 0, 0.4);
+  --pf-presentazione-da: #e7f0ff;
+  --pf-presentazione-a: #f6f7f9;
+}
+
+/* 2. Base -------------------------------------------------------------------- */
 body {
-  background-color: #f6f7f9;
-  color: #1f2937;
+  background-color: var(--pf-sfondo);
+  color: var(--pf-testo);
+}
+
+.marchio {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--pf-primario);
+}
+
+/* 3. Struttura dell'applicazione: barra laterale e contenuto ------------------ */
+.contenitore {
+  display: flex;
+  min-height: 100vh;
+}
+
+.contenitore .barra-laterale {
+  width: 260px;
+  flex: 0 0 260px;
+  background: var(--pf-superficie);
+  border-right: 1px solid var(--pf-bordo);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.contenitore .marchio {
+  font-size: 1.1rem;
+}
+
+.contenitore .voce {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.15rem;
+  border-radius: 0.5rem;
+  color: var(--pf-testo-secondario);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.contenitore .voce:hover {
+  background: var(--pf-superficie-2);
+}
+
+.contenitore .voce.attiva {
+  background: var(--pf-primario-chiaro);
+  color: var(--pf-primario);
+  font-weight: 600;
+}
+
+.contenitore .piede {
+  border-top: 1px solid var(--pf-bordo);
+}
+
+.contenitore .contenuto {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 1.5rem;
+}
+
+.contenitore .barra-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--pf-superficie);
+  border-bottom: 1px solid var(--pf-bordo);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  z-index: 1030;
+}
+
+.contenitore .sfondo-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--pf-velo);
+  z-index: 1040;
+}
+
+@media (max-width: 991.98px) {
+  .contenitore .barra-laterale {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .contenitore .barra-laterale.aperta {
+    transform: translateX(0);
+  }
+
+  .contenitore .contenuto {
+    padding: 4.5rem 1rem 1.5rem;
+  }
+}
+
+/* 4. Home pubblica ------------------------------------------------------------ */
+.presentazione {
+  background: linear-gradient(135deg, var(--pf-presentazione-da) 0%, var(--pf-presentazione-a) 100%);
+}
+
+.immagine-notizia {
+  height: 160px;
+  object-fit: cover;
+}
+
+/* 5. Elementi riusabili -------------------------------------------------------- */
+
+/* Larghezze massime di moduli e pagine */
+.larghezza-max-420 { max-width: 420px; }
+.larghezza-max-480 { max-width: 480px; }
+.larghezza-max-640 { max-width: 640px; }
+.larghezza-max-760 { max-width: 760px; }
+.larghezza-max-960 { max-width: 960px; }
+
+/* Pallino del colore di una categoria: il colore arriva dalla variabile --colore */
+.pallino {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background-color: var(--colore, var(--pf-neutro));
+}
+
+.pallino-medio {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+/* Barre di avanzamento: la larghezza arriva da --percentuale, il colore (facoltativo) da --colore */
+.progress-sottile { --bs-progress-height: 6px; }
+.progress-medio { --bs-progress-height: 8px; }
+.progress-alto { --bs-progress-height: 10px; }
+
+.progress-bar {
+  width: calc(min(var(--percentuale, 0), 100) * 1%);
+  background-color: var(--colore, var(--bs-progress-bar-bg));
+}
+
+/* Tabelle e controlli */
+.colonna-utilizzo { min-width: 160px; }
+.selettore-mese-etichetta { min-width: 8.5rem; }
+
+/* Grafici */
+.contenitore-grafico {
+  position: relative;
+  height: 280px;
+}
+
+.contenitore-grafico-alto {
+  height: 300px;
+}
+
+.altezza-variabile {
+  height: var(--altezza);
 }

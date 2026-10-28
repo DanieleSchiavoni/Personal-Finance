@@ -92,7 +92,7 @@ import { messaggioErrore } from '../../shared/utilita/errori';
                 <th class="text-end">Budget</th>
                 <th class="text-end">Speso</th>
                 <th class="text-end">Disponibile</th>
-                <th style="min-width: 160px">Utilizzo</th>
+                <th class="colonna-utilizzo">Utilizzo</th>
                 <th>Stato</th>
                 <th></th>
               </tr>
@@ -101,8 +101,8 @@ import { messaggioErrore } from '../../shared/utilita/errori';
               @for (voce of budget(); track voce.id) {
                 <tr>
                   <td class="text-nowrap">
-                    <span class="d-inline-block rounded-circle me-2" style="width: 0.65rem; height: 0.65rem"
-                          [style.background-color]="voce.categoriaColore ?? '#6c757d'"></span>
+                    <span class="d-inline-block rounded-circle me-2 pallino"
+                          [style.--colore]="voce.categoriaColore"></span>
                     {{ voce.categoriaNome }}
                   </td>
                   <td class="text-end text-nowrap">{{ voce.importo | currency: valuta() }}</td>
@@ -111,9 +111,9 @@ import { messaggioErrore } from '../../shared/utilita/errori';
                     {{ voce.disponibile | currency: valuta() }}
                   </td>
                   <td>
-                    <div class="progress" style="height: 8px">
+                    <div class="progress progress-medio">
                       <div class="progress-bar" role="progressbar" [class]="classeBarra(voce.stato)"
-                           [style.width.%]="larghezza(voce)"></div>
+                           [style.--percentuale]="larghezza(voce)"></div>
                     </div>
                     <div class="small text-secondary mt-1">{{ voce.percentuale | number: '1.0-1' }}%</div>
                   </td>

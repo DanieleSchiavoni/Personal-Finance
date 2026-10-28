@@ -11,7 +11,7 @@ import { messaggioErrore } from '../../../shared/utilita/errori';
   imports: [ReactiveFormsModule, RouterLink],
   template: `
     <div class="d-flex align-items-center justify-content-center min-vh-100 p-3">
-      <div class="card shadow-sm border-0 w-100" style="max-width: 420px">
+      <div class="card shadow-sm border-0 w-100 larghezza-max-420">
         <div class="card-body p-4">
           <div class="text-center mb-4">
             <i class="bi bi-wallet2 text-primary fs-1"></i>

@@ -40,8 +40,8 @@ import { Notizia } from '../../../models/notizia.model';
           <div class="col-12 col-md-6 col-xl-4">
             <article class="card h-100 border-0 shadow-sm">
               @if (notizia.immagineUrl) {
-                <img [src]="notizia.immagineUrl" alt="" class="card-img-top" loading="lazy"
-                     referrerpolicy="no-referrer" style="height: 160px; object-fit: cover"
+                <img [src]="notizia.immagineUrl" alt="" class="card-img-top immagine-notizia" loading="lazy"
+                     referrerpolicy="no-referrer"
                      (error)="nascondiImmagine($event)" />
               }
               <div class="card-body d-flex flex-column">

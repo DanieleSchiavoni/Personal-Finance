@@ -42,7 +42,7 @@ import { PulsanteResocontoComponent } from './pulsante-resoconto.component';
                   (click)="mesePrecedente()">
             <i class="bi bi-chevron-left"></i>
           </button>
-          <span class="btn btn-light btn-sm text-capitalize disabled fw-semibold" style="min-width: 8.5rem">
+          <span class="btn btn-light btn-sm text-capitalize disabled fw-semibold selettore-mese-etichetta">
             {{ dataSelezionata() | date: 'LLLL y' }}
           </span>
           <button type="button" class="btn btn-outline-secondary btn-sm" aria-label="Mese successivo"
@@ -117,9 +117,9 @@ import { PulsanteResocontoComponent } from './pulsante-resoconto.component';
                   }
                 </div>
                 @if (dati.budget.totale > 0) {
-                  <div class="progress" style="height: 10px">
+                  <div class="progress progress-alto">
                     <div class="progress-bar" role="progressbar" [class]="classeBudget()"
-                         [style.width.%]="percentualeBudget()"></div>
+                         [style.--percentuale]="percentualeBudget()"></div>
                   </div>
                   <div class="small text-secondary mt-2">
                     {{ dati.budget.speso | currency: valuta() }} su {{ dati.budget.totale | currency: valuta() }}
@@ -141,9 +141,9 @@ import { PulsanteResocontoComponent } from './pulsante-resoconto.component';
                   }
                 </div>
                 @if (dati.obiettivi.totali > 0) {
-                  <div class="progress" style="height: 10px">
+                  <div class="progress progress-alto">
                     <div class="progress-bar bg-primary" role="progressbar"
-                         [style.width.%]="percentualeObiettivi()"></div>
+                         [style.--percentuale]="percentualeObiettivi()"></div>
                   </div>
                   <div class="small text-secondary mt-2">
                     {{ dati.obiettivi.importoRisparmiato | currency: valuta() }} su
@@ -186,15 +186,15 @@ import { PulsanteResocontoComponent } from './pulsante-resoconto.component';
                     <li class="list-group-item">
                       <div class="d-flex justify-content-between align-items-center mb-1">
                         <span>
-                          <span class="d-inline-block rounded-circle me-2" style="width: 0.65rem; height: 0.65rem"
-                                [style.background-color]="categoria.colore ?? '#6c757d'"></span>
+                          <span class="d-inline-block rounded-circle me-2 pallino"
+                                [style.--colore]="categoria.colore"></span>
                           {{ categoria.categoriaNome }}
                         </span>
                         <span class="fw-semibold">{{ categoria.totale | currency: valuta() }}</span>
                       </div>
-                      <div class="progress" style="height: 6px">
-                        <div class="progress-bar" role="progressbar" [style.width.%]="categoria.percentuale"
-                             [style.background-color]="categoria.colore ?? '#6c757d'"></div>
+                      <div class="progress progress-sottile">
+                        <div class="progress-bar" role="progressbar" [style.--percentuale]="categoria.percentuale"
+                             [style.--colore]="categoria.colore"></div>
                       </div>
                       <div class="small text-secondary mt-1">
                         {{ categoria.percentuale | number: '1.0-1' }}% delle uscite

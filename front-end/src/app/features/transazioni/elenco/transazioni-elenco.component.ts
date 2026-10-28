@@ -150,9 +150,8 @@ type CampoOrdinamento = 'data' | 'importo' | 'descrizione' | 'categoria';
                       }
                     </td>
                     <td class="text-nowrap">
-                  <span class="d-inline-block rounded-circle me-1"
-                        style="width: 0.65rem; height: 0.65rem"
-                        [style.background-color]="transazione.categoriaColore ?? '#6c757d'"></span>
+                  <span class="d-inline-block rounded-circle me-1 pallino"
+                        [style.--colore]="transazione.categoriaColore"></span>
                       {{ transazione.categoriaNome }}
                     </td>
                     <td>{{ etichettaMetodo(transazione.metodoPagamento) }}</td>
